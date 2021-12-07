@@ -31,7 +31,8 @@ const List = ({id, name, fullName, description, language, htmlUrl, ...props}:Pro
 						</p>
 					</motion.div>
 					<div> 
-						<a href={htmlUrl} target="_blank" className="text-md text-blue-500 hover:underline cursor-pointer">
+						<a href={htmlUrl} target="_blank" rel="noreferrer"
+						   className="text-md text-blue-500 hover:underline cursor-pointer">
 							Visit
 						</a>
 					</div>
