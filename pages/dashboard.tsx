@@ -1,16 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import type {NextPage} from 'next';
 import {AnimateSharedLayout, AnimatePresence} from "framer-motion"
 import Head from 'next/head';
 import Item from '../components/Item';
 import List from '../components/List';
-//import Image from 'next/image';
-import { Octokit } from "@octokit/core"; 
-import { useEffect, useState } from 'react';
+import {Octokit} from "@octokit/core";
+import {useEffect, useState} from 'react';
 
 
 const Dashboard: NextPage = () => {
 
-	const octokit = new Octokit({auth: `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`});
+	const octokit = new Octokit({auth: process.env.NEXT_PUBLIC_GITHUB_PERSONAL_TOKEN!});
 	const [repos, setRepos] = useState<any>([]);
 	const [search, setSearch] = useState("");
 	const [language, setLanguage] = useState("");
@@ -19,13 +19,11 @@ const Dashboard: NextPage = () => {
 	const [identifier, setIdentifier] = useState("");
 	const [open, isOpen] = useState(false);
 
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	async function getRepos(search: string = "react", language: string = "") {
 		isLoading(true);
 		await octokit.request('GET /search/repositories', {
 			q: `${search.toLowerCase()}+language:${language.toLowerCase()}`
 		}).then((res) => {
-			console.log(res.data.items);
 			setRepos(res.data.items);
 			isLoading(false);
 		})
@@ -33,8 +31,8 @@ const Dashboard: NextPage = () => {
 	}
 
 	useEffect(() => {
-		getRepos().then(() => console.log(repos));
-	}, [getRepos, repos])
+		getRepos().then(() => console.log("Repos loaded"));
+	}, [])
 
 
 	return(
@@ -48,19 +46,19 @@ const Dashboard: NextPage = () => {
 				<div className="p-3 md:p-20">
 					<div className="bg-cool-gray-800 px-4 md:px-12 py-6 rounded-md shadow-lg">
 						<div className="flex flex-col md:flex-row md:justify-center md:space-x-4">
-							<input 
-								type="text" 
-								placeholder="Search..." 
-								className="bg-cool-gray-500 md:w-5/12 rounded-md text-md md:text-xl py-2 px-4 shadow-inner" 
+							<input
+								type="text"
+								placeholder="Search..."
+								className="bg-cool-gray-500 md:w-5/12 rounded-md text-md md:text-xl py-2 px-4 shadow-inner"
 								value={search}
 								onChange={(e) => setSearch(e.target.value)}
 							/>
 							<div className="flex justify-between mt-4 md:mt-0 space-x-4">
-								<select 
-									value={language} 
-									onChange={(e) => setLanguage(e.target.value)} 
-									className="px-4 py-1 w-full text-cool-gray-300 bg-transparent border border-1 border-cool-gray-300 hover:text-cool-gray-500 hover:border-cool-gray-500 rounded-md" 
-									name="languages" 
+								<select
+									value={language}
+									onChange={(e) => setLanguage(e.target.value)}
+									className="px-4 py-1 w-full text-cool-gray-300 bg-transparent border border-1 border-cool-gray-300 hover:text-cool-gray-500 hover:border-cool-gray-500 rounded-md"
+									name="languages"
 									id="languages"
 								>
 									<option value="javascript">
@@ -75,6 +73,18 @@ const Dashboard: NextPage = () => {
 									<option value="python">
 										Python
 									</option>
+									<option value="php">
+										PHP
+									</option>
+									<option value="cpp">
+										CPP
+									</option>
+									<option value="java">
+										Java
+									</option>
+									<option value="csharp#">
+										Csharp#
+									</option>
 								</select>
 
 								<button onClick={()=> getRepos(search, language) } className="px-4 py-1 w-full text-cool-gray-300 bg-transparent border border-1 border-cool-gray-300 hover:text-cool-gray-500 hover:border-cool-gray-500 rounded-md">
@@ -85,61 +95,61 @@ const Dashboard: NextPage = () => {
 					</div>
 
 					<div className="relative bg-cool-gray-800 p-6 rounded-md shadow-lg mt-8">
-						
-						{ 
+
+						{
 							loading ? (
 								<div className="flex flex-row justify-center items-center w-full">
 									<div className="flex flex-col items-center">
-									    <div style={{borderTopColor: "transparent" }} className="w-16 h-16 border-4 border-blue-400 border-solid rounded-full animate-spin">
-									    </div>
+										<div style={{borderTopColor: "transparent" }} className="w-16 h-16 border-4 border-blue-400 border-solid rounded-full animate-spin">
+										</div>
 
-									    <span className="mt-2 tracking-widest font-semibold">L o a d i n g</span>
+										<span className="mt-2 tracking-widest font-semibold">L o a d i n g</span>
 									</div>
 								</div>
 							) : (
 
-						<AnimateSharedLayout>
-							<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+								<AnimateSharedLayout>
+									<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
-								{repos.map((data: any, key: number) => (
-									<List 
-										key={`card-list-${key}`} 
-										id={data.id} 
-										name={data.name} 
-										fullName={data.full_name} 
-										language={data.language}
-										description={data.description}
-										htmlUrl={data.html_url}
-										onClick={() => {
-											setIdentifier(data.id);
-											isOpen(true);
-										}}  
-									/>
-								))}
+										{repos.map((data: any, key: number) => (
+											<List
+												key={`card-list-${key}`}
+												id={data.id}
+												name={data.name}
+												fullName={data.full_name}
+												language={data.language}
+												description={data.description}
+												htmlUrl={data.html_url}
+												onClick={() => {
+													setIdentifier(data.id);
+													isOpen(true);
+												}}
+											/>
+										))}
 
-								</div>
-								<AnimatePresence>
-									{identifier && open && (
-										<Item  
-											key={`card-list-${identifier}`}
-											id={identifier}
-											repos={repos}
-											onClick={()=> {
-												setIdentifier("");
-												isOpen(false);
-											}}
-										/>
-									)
-									}
-								</AnimatePresence>
-							</AnimateSharedLayout>
-						)}
+									</div>
+									<AnimatePresence>
+										{identifier && open && (
+											<Item
+												key={`card-list-${identifier}`}
+												id={identifier}
+												repos={repos}
+												onClick={()=> {
+													setIdentifier("");
+													isOpen(false);
+												}}
+											/>
+										)
+										}
+									</AnimatePresence>
+								</AnimateSharedLayout>
+							)}
 
 					</div>
 				</div>
 			</main>
 			<footer>
-				
+
 			</footer>
 		</div>
 	)
