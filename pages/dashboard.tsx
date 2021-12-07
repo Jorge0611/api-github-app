@@ -61,6 +61,9 @@ const Dashboard: NextPage = () => {
 									name="languages"
 									id="languages"
 								>
+									<option value="">
+
+									</option>
 									<option value="javascript">
 										Javascript
 									</option>
