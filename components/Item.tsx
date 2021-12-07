@@ -64,11 +64,12 @@ const Item = ({id, repos, ...props}:Props) => {
 							</motion.div>
 							
 							<motion.div className="flex flex-row items-center space-x-4" animate>
-								<a href={owner.html_url} target="_blank" className="text-lg md:text-2xl text-white hover:underline cursor-pointer">
+								<a href={owner.html_url} target="_blank" rel="noreferrer"
+								   className="text-lg md:text-2xl text-white hover:underline cursor-pointer">
 									{owner.login}
 								</a>
 								<div className="relative h-16 w-16 rounded-full bg-white">
-									<Image src={owner.avatar_url} alt={owner.login} layout="fill" />
+									<Image src={owner.avatar_url} alt={owner.login} layout="fill"/>
 								</div>
 							</motion.div>
 						</div>
@@ -94,7 +95,8 @@ const Item = ({id, repos, ...props}:Props) => {
 						</motion.div>
 
 						<motion.div animate>
-							<a href={html_url} target="_blank" className="px-4 py-3 rounded-md text-lg cursor-pointer transition duration-400 ease-in-out bg-blue-600 hover:bg-purple-600 transform hover:-translate-y-1 hover:scale-110">
+							<a href={html_url} target="_blank" rel="noreferrer"
+							   className="px-4 py-3 rounded-md text-lg cursor-pointer transition duration-400 ease-in-out bg-blue-600 hover:bg-purple-600 transform hover:-translate-y-1 hover:scale-110">
 								Visit repository
 							</a>
 						</motion.div>
