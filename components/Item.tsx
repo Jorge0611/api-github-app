@@ -68,7 +68,7 @@ const Item = ({id, repos, ...props}:Props) => {
 								   className="text-lg md:text-2xl text-white hover:underline cursor-pointer">
 									{owner.login}
 								</a>
-								<div className="relative h-16 w-16 rounded-full bg-white">
+								<div className="relative h-16 w-16">
 									<Image src={owner.avatar_url} alt={owner.login} layout="fill"/>
 								</div>
 							</motion.div>

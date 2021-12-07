@@ -82,9 +82,6 @@ const Dashboard: NextPage = () => {
 									<option value="java">
 										Java
 									</option>
-									<option value="csharp#">
-										Csharp#
-									</option>
 								</select>
 
 								<button onClick={()=> getRepos(search, language) } className="px-4 py-1 w-full text-cool-gray-300 bg-transparent border border-1 border-cool-gray-300 hover:text-cool-gray-500 hover:border-cool-gray-500 rounded-md">
