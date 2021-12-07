@@ -24,17 +24,17 @@ const Item = ({id, repos, ...props}:Props) => {
 				
 				<div className="fixed top-0 left-0 right-0 m-6 mt-24 md:mt-12 md:m-24">
 					
-					<motion.div className="fixed top-0 right-0 mr-6 mt-6" animate>
+					<motion.div className="fixed top-0 right-0 mr-6 mt-12 md:mt-6" animate>
 						<button
-			              {...props}
-			              className="flex bg-blue-gray-100 shadow hover:shadow-2xl items-center justify-center text-blue-gray-600 h-7 w-7 rounded-full relative"
-			            >
-			              <svg
-			                xmlns="http://www.w3.org/2000/svg"
-			                className="h-5 w-5"
-			                viewBox="0 0 20 20"
-			                fill="currentColor"
-			              >
+							{...props}
+							className="flex bg-blue-gray-100 shadow hover:shadow-2xl items-center justify-center text-blue-gray-600 h-7 w-7 rounded-full relative"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								className="h-5 w-5"
+								viewBox="0 0 20 20"
+								fill="currentColor"
+							>
 			                <path
 			                  fillRule="evenodd"
 			                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
