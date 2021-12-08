@@ -36,7 +36,7 @@ const Dashboard: NextPage = () => {
 
 
 	return(
-		<div className="bg-fixed bg-cover bg-center w-full min-h-screen "
+		<div className="bg-scroll md:bg-fixed bg-cover bg-center w-full min-h-screen "
 			 style={{backgroundImage: `url("/background-blur.jpeg")`}}>
 			<Head>
 				<title>Dashboard</title>
