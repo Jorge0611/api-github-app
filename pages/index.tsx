@@ -24,7 +24,7 @@ const Home: NextPage = () => {
           </div>
           <div>
             <p className="text-sm uppercase">
-              A place to find all your favorite projects in one place.
+              Find all your favorite projects in one place.
             </p>
           </div>
           <div className="mt-8">
